@@ -2,12 +2,13 @@ services:
   - type: web
     name: grok-api
     runtime: python
-    repo: https://github.com/didierdrin/Grok-Api
+    repo: https://github.com/realasfngl/Grok-Api
     plan: free
     region: oregon
     buildCommand: |
       apt-get update && apt-get install -y libffi-dev libssl-dev
       pip install --upgrade pip
+      pip install git+https://github.com/coincurve/coincurve.git@master
       pip install -r requirements.txt
     startCommand: uvicorn api_server:app --host 0.0.0.0 --port $PORT
     envVars:
