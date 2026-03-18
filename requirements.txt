@@ -1,7 +1,7 @@
 curl_cffi
 fastapi
 uvicorn
-git+https://github.com/coincurve/coincurve.git@master
 beautifulsoup4
 pydantic
 colorama
+coincurve==21.0.0

@@ -8,9 +8,12 @@ services:
     buildCommand: |
       apt-get update && apt-get install -y libffi-dev libssl-dev
       pip install --upgrade pip
-      pip install git+https://github.com/coincurve/coincurve.git@master
+      # Try to install coincurve from wheel instead of GitHub
+      pip install coincurve==21.0.0 --no-build-isolation || true
       pip install -r requirements.txt
     startCommand: uvicorn api_server:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
+      - key: PYTHONUNBUFFERED
+        value: 1
